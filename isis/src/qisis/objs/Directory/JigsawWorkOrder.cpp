@@ -113,25 +113,25 @@ namespace Isis {
   bool JigsawWorkOrder::setupExecution() {
     bool success = WorkOrder::setupExecution();
 
-    if (success) {
-      // Create a blocking setup dialog initially and check to make sure we get valid info
-      JigsawSetupDialog setup(project());
-      if (setup.exec() == QDialog::Accepted) {
-        m_bundleSettings = setup.bundleSettings();
-        if (setup.selectedControl()) {
-          setInternalData(QStringList(setup.selectedControl()->id()));
-        }
-        // This else should not happen, the work order should be disabled if there are no controls.
-        else {
-          QString msg = "Cannot run a bundle adjustment without a selected control network.";
-          QMessageBox::critical(qobject_cast<QWidget *>(parent()), "Error", msg);
-          success = false;
-        }
-      }
-      else {
-        success = false;
-      }
-    }
+    // if (success) {
+    //   // Create a blocking setup dialog initially and check to make sure we get valid info
+    //   JigsawSetupDialog setup(project());
+    //   if (setup.exec() == QDialog::Accepted) {
+    //     m_bundleSettings = setup.bundleSettings();
+    //     if (setup.selectedControl()) {
+    //       setInternalData(QStringList(setup.selectedControl()->id()));
+    //     }
+    //     // This else should not happen, the work order should be disabled if there are no controls.
+    //     else {
+    //       QString msg = "Cannot run a bundle adjustment without a selected control network.";
+    //       QMessageBox::critical(qobject_cast<QWidget *>(parent()), "Error", msg);
+    //       success = false;
+    //     }
+    //   }
+    //   else {
+    //     success = false;
+    //   }
+    // }
 
 
     return success;
@@ -160,9 +160,8 @@ namespace Isis {
    */
   void JigsawWorkOrder::execute() {
     // Get the selected control and bundle settings and give them to the JigsawDialog for now.
-    Control *selectedControl = project()->control(internalData().first());
-    JigsawDialog *runDialog = new JigsawDialog(project(), m_bundleSettings, selectedControl);
-    runDialog->setAttribute(Qt::WA_DeleteOnClose);
-    runDialog->show();
+    // Control *selectedControl = project()->control(internalData().first());
+    JigsawDialog *runDialog = project()->directory()->addJigsawView();
+
   }
 }

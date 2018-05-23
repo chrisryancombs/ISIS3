@@ -34,8 +34,7 @@ namespace Isis {
    * @param Project *project Pointer to the project this dialog belongs to.
    * @param QWidget *parent Pointer to parent widget.
    */
-  JigsawDialog::JigsawDialog(Project *project, QWidget *parent) :
-      QDialog(parent), m_ui(new Ui::JigsawDialog) {
+  JigsawDialog::JigsawDialog(Project *project, QWidget *parent) : m_ui(new Ui::JigsawDialog) {
     m_project = project;
     m_selectedControl = NULL;
     init();
@@ -56,7 +55,7 @@ namespace Isis {
   JigsawDialog::JigsawDialog(Project *project,
                              BundleSettingsQsp bundleSettings,
                              Control *selectedControl,
-                             QWidget *parent) : QDialog(parent), m_ui(new Ui::JigsawDialog) {
+                             QWidget *parent) : m_ui(new Ui::JigsawDialog) {
 
     m_project = project;
     m_bundleSettings = bundleSettings;
@@ -100,12 +99,12 @@ namespace Isis {
     m_ui->buttonBox->addButton(m_reject, QDialogButtonBox::ActionRole);
     m_ui->buttonBox->addButton(m_close, QDialogButtonBox::AcceptRole);
 
-    // Accept will handle saving the results.
-    connect(m_accept, SIGNAL(clicked(bool)),
-           this, SLOT(acceptBundleResults()));
-    // Reject will handle discarding the results.
-    connect(m_reject, SIGNAL(clicked(bool)),
-           this, SLOT(rejectBundleResults()));
+    // // Accept will handle saving the results.
+    // connect(m_accept, SIGNAL(clicked(bool)),
+    //        this, SLOT(acceptBundleResults()));
+    // // Reject will handle discarding the results.
+    // connect(m_reject, SIGNAL(clicked(bool)),
+    //        this, SLOT(rejectBundleResults()));
 
     m_bundleAdjust = NULL;
     m_bundleSolutionInfo = NULL;
@@ -129,7 +128,7 @@ namespace Isis {
     m_ui->useLastSettings->setToolTip(lastSettingsToolTip);
     m_ui->useLastSettings->setWhatsThis(lastSettingsWhat);
 
-    setWindowFlags(Qt::WindowStaysOnTopHint);
+    // setWindowFlags(Qt::WindowStaysOnTopHint);
   }
 
 

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QDir>
+#include <QFrame>
 #include <QPointer>
 #include <QWidget>
 
@@ -80,7 +81,7 @@ namespace Isis {
    *   @history 2017-11-01 Ian Humphrey - Create ecubs in the bundle results directory which contain
    *                           updated SPICE.  Fixes #4804, #4849.
    */
-  class JigsawDialog : public QDialog {
+  class JigsawDialog : public QFrame {
     Q_OBJECT
 
   public:
