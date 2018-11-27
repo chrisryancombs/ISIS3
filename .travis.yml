@@ -1,4 +1,6 @@
 language: cpp
 compiler: gcc
 
+before install:
+  - mkdir build install
 
